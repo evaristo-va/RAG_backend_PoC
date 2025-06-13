@@ -108,6 +108,7 @@ RAG_backend/
 ```
 uvicorn main:app --reload
 ```
+❗️Note: the api key should be in an .env file inside embedding as COHERE_API_KEY
 ### ✍️ Create a Document
 Endpoint POST /create-document/
 ```
