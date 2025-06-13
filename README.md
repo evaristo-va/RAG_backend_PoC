@@ -176,6 +176,8 @@ cURL:
 ```
 curl -X DELETE http://localhost:8000/libraries/<library_id>
 ```
+Try with library_id=
+Try with document_id="838da7d4-73aa-4463-998d-b62e6b27afcd" (Already created by default in main)
 ### 👀 Read a Library (All associated documents)
 Endpoint GET /libraries/{library_id}
 
