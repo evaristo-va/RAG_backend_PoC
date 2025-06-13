@@ -40,6 +40,7 @@ RAG_backend/
 ├── db.py                    # In-memory DB, indexer initalization and thread-safe operations
 ├── models.py                # Core data models (Library, Document, Chunk)
 ├── schemas.py               # Pydantic schemas for requests/responses
+├── Dockerfile               # Docker file
 
 ├── routes/                  # FastAPI endpoint definitions
 │   ├── library.py
@@ -70,7 +71,7 @@ RAG_backend/
 │   ├── leo_messi.txt
 │   └── rafa_nadal.txt
 
-└── requirements.txt         # Python dependencies
+└── requirements.txt         # Code dependencies
 ```
 
 ### 📁 `db.py`
