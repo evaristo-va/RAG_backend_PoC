@@ -190,7 +190,7 @@ curl -X GET http://localhost:8000/libraries/<library_id>
 
 ## ✅ Features
 
-- In-memory vector DB for fast prototyping
+- In-memory DB 
 - Multiple indexing (Brute Force, KD-Tree) and chunking (fixed-length, sentence-based) strategies.
 - Pluggable embedding service (Cohere by default)
 - Thread-safe read/write operations
