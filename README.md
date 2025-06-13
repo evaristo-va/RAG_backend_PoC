@@ -80,7 +80,7 @@ RAG_backend/
 - Implements thread locking for safe concurrent access.
 
 ### 📁 `indexing/`
-- Vector index implementations (e.g. brute force, KD-tree) and storage of embeddings.
+- Vector index implementations (e.g. brute force, KD-tree and local sensitivity hashing) and storage of embeddings.
 - Follows a **factory pattern** for easily switching/adding index types.
 
 ### 📁 `embedding/`
@@ -190,6 +190,11 @@ curl -X GET http://localhost:8000/libraries/<library_id>
 ### 🔨 Brute force approach
 -  Knn search : complexity is O(nd+nlogk) with d being embedding vector dimension, k the numer of elements to retrieve (heap size).
 -  Add/delete: constant operations O(1) implemented via hashmap.
+
+### #️⃣ Local sensitivity hashing (LSH)
+-  Knn search: Complexity is O(n_h*n_t*d + b*d + b*logk), with n_h and n_t being the length of hash and number of tables, b the number of candidates found. Each term in the sum is for computing hashcode, compute dot prod and mantain heap. Fast when b << n.
+-  Add: O(n_h*d), in reality due to planes initialization is O(n_h*n_n_t*d).
+-  Delete: O(n_h*n_n_t*d).
 
 ### 🌳 K-dimensional trees (Kdtrees)
 -  Knn search: Complexity is O(logklogn+k)~O(logn) on average. If tree is balanced the traversal is O(logn) and the heap maintenance is O(logk).
