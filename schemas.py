@@ -9,6 +9,13 @@ class SearchQueryRequest(BaseModel):
 	k: int = Field(5, description='number of results to retreive')
 	date_range: Optional[Tuple[datetime,datetime]] = Field(None, description='Filter by date as tuple (from_date,to_date) to filter by timestamp')
 
+class SearchResultResponse(BaseModel):
+	chunk_id: UUID
+	document_id: UUID
+	score: float
+	content: str
+	metadata: Optional[Dict[str, Any]] = Field(default_factory=dict, description='Metadata')
+
 class CreateDocumentRequest(BaseModel):
 	library_id: UUID
 	title: str  
