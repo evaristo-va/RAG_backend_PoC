@@ -17,5 +17,6 @@ class DB:
             return func()
 
 db = DB()
+#indexer = get_indexer("lsh")
 indexer = get_indexer("kd tree")
 #indexer = get_indexer("brute force")
