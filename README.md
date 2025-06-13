@@ -104,6 +104,10 @@ RAG_backend/
 ---
 
 ## 📑 API Usage & Endpoints
+### 🖥️ Run locally
+```
+uvicorn main:app --reload
+```
 ### ✍️ Create a Document
 Endpoint POST /create-document/
 ```
@@ -186,7 +190,7 @@ cURL:
 curl -X GET http://localhost:8000/libraries/<library_id>
 ```
 
-## 👷🏼‍♂️ Algorithm choices
+## 👷🏼‍♂️ Algorithmic choices for Indexing
 ### 🔨 Brute force approach
 -  Knn search : complexity is O(nd+nlogk) with d being embedding vector dimension, k the numer of elements to retrieve (heap size).
 -  Add/delete: constant operations O(1) implemented via hashmap.
