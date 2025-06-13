@@ -1,6 +1,6 @@
 # 🧠 RAG Backend
 
-This is a PoC backend service for Retrieval-Augmented Generation (RAG) that handles document ingestion, chunking, embedding and vector indexing. It includes robust in-memory data structures and exposes CRUD operations along with search functionality through APIs powered by FastAPI and Pydantic.
+This is a PoC backend service for Retrieval-Augmented Generation (RAG) that handles document ingestion, chunking, embedding and vector indexing. It includes robust in-memory data structures and exposes CR(U)D operations along with search functionality through APIs powered by FastAPI and Pydantic.
 
 ---
 
