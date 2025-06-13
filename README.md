@@ -191,15 +191,31 @@ curl -X GET http://localhost:8000/libraries/<library_id>
 -  Knn search : complexity is O(nd+nlogk) with d being embedding vector dimension, k the numer of elements to retrieve (heap size).
 -  Add/delete: constant operations O(1) implemented via hashmap.
 
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/35adc6d6-d9e0-49d7-81d0-640e4c41cafd" width="400"/>
+</div>
+  
+
 ### #️⃣ Local sensitivity hashing (LSH)
 -  Knn search: Complexity is O(n_h*n_t*d + b*d + b*logk), with n_h and n_t being the length of hash and number of tables, b the number of candidates found. Each term in the sum is for computing hashcode, compute dot prod and mantain heap. Fast when b << n.
 -  Add: O(n_h*d), in reality due to planes initialization is O(n_h*n_n_t*d).
 -  Delete: O(n_h*n_n_t*d).
+  
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/d3c7326d-3699-4fec-a6e4-ab439e464b6a" width="400"/>
+</div>
+
 
 ### 🌳 K-dimensional trees (Kdtrees)
 -  Knn search: Complexity is O(logklogn+k)~O(logn) on average. If tree is balanced the traversal is O(logn) and the heap maintenance is O(logk).
 -  Add: now adding implies rebuilding the whole tree so as of now O(nLog2n).
 -  Delete: now deleting implies removing from hashmap and not from tree then O(1).
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/ae8d8e98-dc04-4a4a-97ca-fe3560e01265" width="400"/>
+</div>
+
+
 
 ---
 
