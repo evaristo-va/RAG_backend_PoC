@@ -246,6 +246,6 @@ curl -X GET http://localhost:8000/libraries/<library_id>
 ## 📌 Future improvements
 - Allow for search within specific libraries and metadata filtering (besides the date filtering).
 - Possibility of selecting the indexing and chunking methods by the user dynamically.
-- Defining/using schemas for the responses.
+- Defining schemas for the responses.
 - Create update endpoints/functions.
 - Algorithmic improvements: Insert node into tree instead of rebuilding the kdtree each times for efficiency. Improve treebuilder with an efficient algorithm to find the median instead of doing a sort.
