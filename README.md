@@ -37,7 +37,7 @@ All entities are stored in an **in-memory database**, with dictionaries keyed by
 ```
 RAG_backend/
 ├── main.py                  # FastAPI app entry point
-├── db.py                    # In-memory DB and thread-safe operations
+├── db.py                    # In-memory DB, indexer initalization and thread-safe operations
 ├── models.py                # Core data models (Library, Document, Chunk)
 ├── schemas.py               # Pydantic schemas for requests/responses
 
@@ -46,7 +46,7 @@ RAG_backend/
 │   ├── document.py
 │   └── search.py
 
-├── services/                # Core business logic
+├── services/                # Core logic
 │   ├── library_service.py
 │   ├── documents_service.py
 │   └── search_service.py
