@@ -185,7 +185,17 @@ cURL:
 curl -X GET http://localhost:8000/libraries/<library_id>
 ```
 
+## 👷🏼‍♂️ Algorithm choices
+### 🔨 Brute force approach
+-  Knn search : complexity is O(nd+nlogk) with d being embedding vector dimension, k the numer of elements to retrieve (heap size).
+-  Add/delete: constant operations O(1) implemented via hashmap.
 
+### 🌳 K-dimensional trees (Kdtrees)
+-  Knn search: Complexity is O(logklogn+k)~O(logn) on average. If tree is balanced the traversal is O(logn) and the heap maintenance is logk.
+-  Add: now adding implies rebuilding the whole tree so as of now O(nLog2n).
+-  Delete: now deleting implies removing from hashmap and not from tree then O(1).
+
+---
 
 
 ## ✅ Features
