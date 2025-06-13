@@ -227,7 +227,7 @@ curl -X GET http://localhost:8000/libraries/<library_id>
 ## ✅ Features
 
 - In-memory DB 
-- Multiple indexing (Brute Force, KD-Tree) and chunking (fixed-length, sentence-based) strategies.
+- Multiple indexing (Brute Force, KD-Tree, LSH) and chunking (fixed-length, sentence-based) strategies.
 - Pluggable embedding service (Cohere by default)
 - Thread-safe read/write operations
 - Auto-generated OpenAPI docs (View on Swagger UI)
