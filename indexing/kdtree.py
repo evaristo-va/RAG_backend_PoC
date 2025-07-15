@@ -12,33 +12,11 @@ class KDTreeNode:
 		self.left = left
 		self.right = right
 
-class KDTreeBuilder:
-	def build(self, vectors: Dict[UUID, np.array]) -> Optional["KDTreeNode"]:
-		items = list(vectors.items())
-		n_dim = len(items[0][1])
-
-		def recursive_build(items: List[Tuple[UUID, np.array]], depth=0) -> Optional["KDTreeNode"]:
-			# base case
-			if not items:
-				return
-			axis = depth % n_dim
-			# sort and compute median
-			items.sort(key=lambda x:x[1][axis])
-			median_idx = len(items) // 2
-			median = items[median_idx]
-
-			# build left and right subtrees cycling splitting coordinate
-			left = recursive_build(items[:median_idx], depth+1)
-			right = recursive_build(items[median_idx+1:], depth+1)
-			return KDTreeNode(median[0],median[1],axis,left,right)
-
-		return recursive_build(items)
 
 class KDTreeIndexer(BaseIndexer):
 	def __init__(self):
 		self.vectors = {}
 		self.root: Optional["KDTreeNode"] = None
-		self.builder = KDTreeBuilder()
 
 	def _insert_node(self, node: Optional["KDTreeNode"], vector_id: UUID, vector: np.array, depth: int) -> KDTreeNode:
 		n_dim = len(vector)

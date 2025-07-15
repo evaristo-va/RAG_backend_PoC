@@ -3,9 +3,9 @@ from db import db
 from schemas import SearchQueryRequest, SearchResultResponse
 from services.documents_service import search_documents
 
-router = APIRouter()
+router = APIRouter(prefix="/documents")
 
-@router.post("/search-document/")
+@router.post("/search")
 def search_documents_endpoint(request: SearchQueryRequest):
 	results = search_documents(db, request)
 	response = []
