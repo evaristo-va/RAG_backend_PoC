@@ -31,6 +31,7 @@ def create_library(db: DB, request: CreateLibraryRequest) -> Library:
 		)
 		
 		db.libraries[library.id]=library
+		print(f'Library with ID "{lib_id}" created successfully')
 		
 		return library 
 	

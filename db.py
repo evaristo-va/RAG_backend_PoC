@@ -3,6 +3,7 @@ from typing import Dict
 from uuid import UUID
 from threading import Lock
 from indexing.factory import get_indexer
+from chunking.factory import get_chunker
 
 class DB:
     def __init__(self):
@@ -20,3 +21,4 @@ db = DB()
 #indexer = get_indexer("lsh")
 indexer = get_indexer("kd tree")
 #indexer = get_indexer("brute force")
+chunker = get_chunker("fixed", chunk_size = 200)

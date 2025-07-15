@@ -1,5 +1,5 @@
 from models import Document, Chunk, Library
-from db import DB, db, indexer
+from db import DB, db, indexer, chunker
 from uuid import UUID, uuid4
 from datetime import datetime
 from embedding.embedder import vector_embedder
@@ -29,7 +29,7 @@ def create_document(db: DB, request: CreateDocumentRequest) -> Document:
 		timestamp = datetime.now()
 		
 		# create chunker object
-		chunker = get_chunker("fixed", chunk_size = 200)
+		#chunker = get_chunker("fixed", chunk_size = 200)
 		
 		# split the text of document into chunks
 		chunks_list = chunker.chunk(content)
@@ -66,6 +66,7 @@ def create_document(db: DB, request: CreateDocumentRequest) -> Document:
 		db.documents[doc_id] = document 
 		# add documents to the library in the database
 		db.libraries[library_id].document_ids.append(doc_id)
+		print(f'Document with ID "{doc_id}" created successfully')
 		
 		return document 
 	

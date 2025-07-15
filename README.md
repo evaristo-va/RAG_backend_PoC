@@ -192,6 +192,12 @@ curl -X GET http://localhost:8000/libraries/<library_id>
 ```
 
 ## 👷🏼‍♂️ Algorithmic choices for Indexing
+Let:
+- N: number of data points
+- D: dimension of each vector (data point)
+- H: number of random hyperplanes in LSH
+- L: number of hashtables
+- K: number of KNN for search
 ### 🔨 Brute force approach
 -  Knn search : complexity is O(nd+nlogk) with d being embedding vector dimension, k the numer of elements to retrieve (heap size).
 -  Add/delete: constant operations O(1) implemented via hashmap.
@@ -200,26 +206,26 @@ curl -X GET http://localhost:8000/libraries/<library_id>
   <img src="https://github.com/user-attachments/assets/35adc6d6-d9e0-49d7-81d0-640e4c41cafd" width="400"/>
 </div>
   
-
-### #️⃣ Local sensitivity hashing (LSH)
--  Knn search: Complexity is O(n_h*n_t*d + b*d + b*logk), with n_h and n_t being the length of hash and number of tables, b the number of candidates found. Each term in the sum is for computing hashcode, compute dot prod and mantain heap. Fast when b << n.
--  Add: O(n_h*d), in reality due to planes initialization is O(n_h*n_n_t*d).
--  Delete: O(n_h*n_n_t*d).
-  
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/d3c7326d-3699-4fec-a6e4-ab439e464b6a" width="400"/>
-</div>
-
-
 ### 🌳 K-dimensional trees (Kdtrees)
--  Knn search: Complexity is O(logklogn+k)~O(logn) on average. If tree is balanced the traversal is O(logn) and the heap maintenance is O(logk).
--  Add: now adding implies rebuilding the whole tree so as of now O(nLog2n).
--  Delete: now deleting implies removing from hashmap and not from tree then O(1).
+Main idea is to partition the space hierarchically into hypercubes using a tree-like structure. Each node in the tree contains an axis or dimension to split the data in half according to the median.
+-  Knn search: Complexity is O(log<sub>2</sub>N·[D+log<sub>2</sub>K])~O(log<sub>2</sub>N) on average. If tree is balanced the traversal is O(log<sub>2</sub>N) and the heap maintenance is O(log<sub>2</sub>K). For high dimensions however O(N·log<sub>2</sub>K).
+-  Delete: O(log<sub>2</sub>N).
+-  Add: to add we traverse down the tree O(log<sub>2</sub>N).
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/ae8d8e98-dc04-4a4a-97ca-fe3560e01265" width="400"/>
 </div>
 
+### #️⃣ Local sensitivity hashing (LSH)
+The main idea is to partition the space using H random hyperplanes. Based on those hyperplanes the data is divided into buckets using a hashcode generated based on where a point is using the hyperplanes.
+
+-  Knn search: Complexity is O(L·H·D + L·N/2^H (D+log<sub>2</sub> K)). On average if we set H=Log<sub>2</sub>(N) then complexity is O(L·D·Log<sub>2</sub>N)
+-  Add: O(H·D), in reality due to planes initialization is O(H·D·L).
+-  Delete: O(L·H·D).
+  
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/d3c7326d-3699-4fec-a6e4-ab439e464b6a" width="400"/>
+</div>
 
 
 ---
