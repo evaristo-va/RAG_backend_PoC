@@ -50,10 +50,11 @@ class LSHIndexer(BaseIndexer):
 		for vec_id in candidate_vecs:
 			v = self.vectors[vec_id]
 			mod_v = np.sqrt(np.sum(v**2))
-			if mod_v == 0 or mod_qv == 0:
+			denom = mod_v * mod_qv
+			if denom < 1e-12:
 				sim = 0
 			else:
-				sim = np.dot(v,qv) / (mod_v*mod_qv) 
+				sim = np.dot(v,qv) / denom 
 
 			if len(heap) < k:
 				heapq.heappush(heap, (-sim,vec_id))
